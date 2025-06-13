@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChronoPick Demo (@bikiran/chronopick)</title>
+  <!-- 
+    Tailwind CSS is now part of the library's build process for its own styles.
+    For the demo app itself, Vite will handle CSS processing if App.tsx imports its own styles or global styles.
+    The library's CSS (dist/style.css) will be implicitly included during `npm run dev` by Vite's resolution,
+    or you might explicitly import '../dist/style.css' in App.tsx or index.tsx for the demo.
+    For a standalone HTML demo that uses the *built* package, you'd link to `dist/style.css`.
+  -->
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react-dom": "https://esm.sh/react-dom@^19.1.0",
+    "path": "https://esm.sh/path@^0.12.7",
+    "vite": "https://esm.sh/vite@^6.3.5",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^4.5.2",
+    "vite-plugin-dts": "https://esm.sh/vite-plugin-dts@^4.5.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-100 dark:bg-slate-900 transition-colors duration-300">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script> {/* Entry point for the demo React app */}
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

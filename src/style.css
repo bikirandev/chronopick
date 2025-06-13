@@ -1,0 +1,73 @@
+/* Import Tailwind's base, components, and utilities styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles previously in index.html */
+
+/* Custom scrollbar for better aesthetics across the application */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #2d3748; /* Default dark mode track */
+  border-radius: 10px;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #2d3748; /* Explicit dark mode track */
+}
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light mode track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #718096; /* Default dark mode thumb */
+  border-radius: 10px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #718096; /* Explicit dark mode thumb */
+}
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #888; /* Light mode thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0; /* Default dark mode thumb hover */
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0; /* Explicit dark mode thumb hover */
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Light mode thumb hover */
+}
+
+/* Styles for the portal container where the picker is rendered (non-inline mode) */
+.chronopick-container {
+  position: absolute; /* Crucial for JavaScript-based positioning */
+  z-index: 1050;     /* High z-index to ensure it appears above other content */
+  /* top, left properties will be dynamically set by JavaScript */
+}
+
+/* Utility class for visually hidden content, primarily for accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Base class for picker open/close animations */
+.chronopick-picker-content-animated {
+  transition: opacity 150ms ease-out, transform 150ms ease-out;
+}
+
+/* Apply Inter font if you want it bundled or ensure users have it */
+body {
+  font-family: 'Inter', sans-serif;
+}

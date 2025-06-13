@@ -1,0 +1,64 @@
+{
+  "name": "@bikiran/chronopick",
+  "version": "0.1.3",
+  "description": "A modern React date and time picker component with Tailwind CSS styling.",
+  "main": "dist/chronopick.umd.js",
+  "module": "dist/chronopick.mjs",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/chronopick.mjs",
+      "require": "./dist/chronopick.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "dist/style.css"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && npm run build:css",
+    "copy:css": "cpx ./src/style.css ./dist/",
+    "build:css": "tailwindcss -c tailwind.config.js -i ./src/style.css -o ./dist/style.css",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "cpx": "^1.5.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.4"
+  },
+  "keywords": [
+    "react",
+    "datepicker",
+    "datetimepicker",
+    "calendar",
+    "chronopick",
+    "tailwindcss"
+  ],
+  "author": "Bikiran",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
