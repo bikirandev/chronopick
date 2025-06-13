@@ -203,7 +203,7 @@ ChronoPick meets WCAG 2.1 AA standards with:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/bikiran/chronopick.git
+git clone https://github.com/bikirandev/chronopick.git
 cd chronopick
 ```
 
@@ -242,9 +242,9 @@ src/
 
 ## License
 
-MIT © [Bikiran Sahu](https://github.com/bikiran)
+MIT © [Bikiran](https://github.com/bikirandev)
 
 ---
 
 **Need Help?**  
-Open an issue on [GitHub](https://github.com/bikiran/chronopick/issues)"
+Open an issue on [GitHub](https://github.com/bikirandev/chronopick/issues)"
