@@ -1,4 +1,4 @@
- "# @bikiran/chronopick
+ # @bikiran/chronopick
 
 <!-- ![ChronoPick Banner](https://via.placeholder.com/800x200?text=Modern+React+Date+Time+Picker) Replace with actual banner image -->
 
@@ -247,4 +247,4 @@ MIT © [Bikiran](https://github.com/bikirandev)
 ---
 
 **Need Help?**  
-Open an issue on [GitHub](https://github.com/bikirandev/chronopick/issues)"
+Open an issue on [GitHub](https://github.com/bikirandev/chronopick/issues)
