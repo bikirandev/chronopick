@@ -18,9 +18,9 @@ interface TimePickerProps {
    */
   handleTimeChange: CoreReturnType["handleTimeChange"];
   /** Ref for the hour select HTML element, used for programmatic focus management. */
-  hourSelectRef: React.RefObject<HTMLSelectElement | null>;
+  hourSelectRef: React.RefObject<HTMLSelectElement>;
   /** Ref for the minute select HTML element, used for programmatic focus management. */
-  minuteSelectRef: React.RefObject<HTMLSelectElement | null>;
+  minuteSelectRef: React.RefObject<HTMLSelectElement>;
 }
 
 /**

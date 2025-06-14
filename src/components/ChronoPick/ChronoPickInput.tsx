@@ -8,7 +8,7 @@ interface ChronoPickInputProps {
   /** The formatted string value to display in the input field. */
   value: string;
   /** Ref to the HTML input element, used for focus management by the parent component. */
-  inputRef: React.RefObject<HTMLInputElement | null>;
+  inputRef: React.RefObject<HTMLInputElement>;
   /** Callback function invoked when the input field receives focus. */
   onFocus: () => void;
   /** Callback function for handling keydown events on the input field. */
