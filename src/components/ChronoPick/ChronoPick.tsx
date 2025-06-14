@@ -5,7 +5,7 @@ import {
   ChronoPickMode,
   DateRange,
   CalendarView,
-} from "../../types";
+} from "./types";
 import {
   DEFAULT_DATE_FORMAT,
   MONTH_NAMES_FULL,
@@ -17,6 +17,7 @@ import ChronoPickInput from "./ChronoPickInput";
 import ChronoPickHeader from "./ChronoPickHeader";
 import { DayView, MonthView, YearView } from "./CalendarViews";
 import TimePicker from "./TimePicker";
+import style from "../ChronoPick/styles/global.module.css";
 
 /**
  * ChronoPick component - A modern React date and time picker.
@@ -153,7 +154,7 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
     }
     // Create portal container for non-inline picker
     const container = document.createElement("div");
-    container.classList.add("chronopick-container");
+    container.classList.add(style.chronopickContainer);
     container.style.visibility = "hidden"; // Initially hidden until positioned
     document.body.appendChild(container);
     setPortalContainer(container); // Store ref to the portal host

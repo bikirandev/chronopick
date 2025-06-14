@@ -30,7 +30,7 @@
       "@bikiran/chronopick": ["./src/index.ts"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "global.d.ts"],
   "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

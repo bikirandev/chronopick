@@ -1,11 +1,14 @@
-
-import { MONTH_NAMES_FULL, MONTH_NAMES_SHORT, DAY_NAMES_SHORT } from './constants';
-import { DateRange, CalendarView } from '../../../types';
+import {
+  MONTH_NAMES_FULL,
+  MONTH_NAMES_SHORT,
+  DAY_NAMES_SHORT,
+} from "./constants";
+import { DateRange, CalendarView } from "../types";
 
 /**
  * Formats a Date object into a string based on the provided format string.
  * Supports various tokens for year, month, day, and time components.
- * 
+ *
  * Supported Date Tokens:
  * - YYYY: Full year (e.g., 2023)
  * - MM: Month number (01-12)
@@ -13,39 +16,43 @@ import { DateRange, CalendarView } from '../../../types';
  * - Month: Full month name (e.g., January)
  * - Mon: Short month name (e.g., Jan)
  * - Day: Short day name (e.g., Sun)
- * 
+ *
  * Supported Time Tokens (if `enableTime` is true):
  * - hh: Hour (01-12 for AM/PM)
  * - mm: Minute (00-59)
  * - ss: Second (00-59) (Optional: parsing supports it, formatting can include it)
  * - K: AM/PM marker
- * 
+ *
  * @param date The Date object to format.
  * @param format The format string.
  * @param enableTime If true, time parts (hh, mm, ss, K) will be processed. Defaults to false.
  * @returns The formatted date string, or an empty string if `date` is null or undefined.
  */
-export const formatDate = (date: Date, format: string, enableTime: boolean = false): string => {
-  if (!date) return '';
-  let K = ''; // AM/PM
+export const formatDate = (
+  date: Date,
+  format: string,
+  enableTime: boolean = false
+): string => {
+  if (!date) return "";
+  let K = ""; // AM/PM
   if (enableTime) {
     let hours = date.getHours();
-    K = hours >= 12 ? 'PM' : 'AM';
+    K = hours >= 12 ? "PM" : "AM";
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12' for 12 AM/PM format
-    format = format.replace('hh', String(hours).padStart(2, '0'));
-    format = format.replace('mm', String(date.getMinutes()).padStart(2, '0'));
-    format = format.replace('ss', String(date.getSeconds()).padStart(2, '0'));
-    format = format.replace('K', K);
+    format = format.replace("hh", String(hours).padStart(2, "0"));
+    format = format.replace("mm", String(date.getMinutes()).padStart(2, "0"));
+    format = format.replace("ss", String(date.getSeconds()).padStart(2, "0"));
+    format = format.replace("K", K);
   }
-  
-  format = format.replace('YYYY', String(date.getFullYear()));
-  format = format.replace('MM', String(date.getMonth() + 1).padStart(2, '0')); // Month is 0-indexed in Date, so +1
-  format = format.replace('DD', String(date.getDate()).padStart(2, '0'));
-  format = format.replace('Month', MONTH_NAMES_FULL[date.getMonth()]);
-  format = format.replace('Mon', MONTH_NAMES_SHORT[date.getMonth()]);
-  format = format.replace('Day', DAY_NAMES_SHORT[date.getDay()]);
-  
+
+  format = format.replace("YYYY", String(date.getFullYear()));
+  format = format.replace("MM", String(date.getMonth() + 1).padStart(2, "0")); // Month is 0-indexed in Date, so +1
+  format = format.replace("DD", String(date.getDate()).padStart(2, "0"));
+  format = format.replace("Month", MONTH_NAMES_FULL[date.getMonth()]);
+  format = format.replace("Mon", MONTH_NAMES_SHORT[date.getMonth()]);
+  format = format.replace("Day", DAY_NAMES_SHORT[date.getDay()]);
+
   return format;
 };
 
@@ -56,46 +63,68 @@ export const formatDate = (date: Date, format: string, enableTime: boolean = fal
  * @param enableTime If true, time parts will be parsed. Defaults to false.
  * @returns A Date object if parsing is successful and the date is valid, otherwise `null`.
  */
-export const parseDate = (dateString: string, format: string, enableTime: boolean = false): Date | null => {
+export const parseDate = (
+  dateString: string,
+  format: string,
+  enableTime: boolean = false
+): Date | null => {
   if (!dateString) return null;
 
   const now = new Date();
-  let year = now.getFullYear(), month = now.getMonth(), day = now.getDate();
-  let hours = 0, minutes = 0, seconds = 0;
+  let year = now.getFullYear(),
+    month = now.getMonth(),
+    day = now.getDate();
+  let hours = 0,
+    minutes = 0,
+    seconds = 0;
 
-  const yearMatch = format.indexOf('YYYY');
-  if (yearMatch > -1) year = parseInt(dateString.substring(yearMatch, yearMatch + 4), 10);
+  const yearMatch = format.indexOf("YYYY");
+  if (yearMatch > -1)
+    year = parseInt(dateString.substring(yearMatch, yearMatch + 4), 10);
 
-  const monthMatch = format.indexOf('MM');
-  if (monthMatch > -1) month = parseInt(dateString.substring(monthMatch, monthMatch + 2), 10) - 1; // Month is 0-indexed
-  
-  const dayMatch = format.indexOf('DD');
-  if (dayMatch > -1) day = parseInt(dateString.substring(dayMatch, dayMatch + 2), 10);
+  const monthMatch = format.indexOf("MM");
+  if (monthMatch > -1)
+    month = parseInt(dateString.substring(monthMatch, monthMatch + 2), 10) - 1; // Month is 0-indexed
+
+  const dayMatch = format.indexOf("DD");
+  if (dayMatch > -1)
+    day = parseInt(dateString.substring(dayMatch, dayMatch + 2), 10);
 
   if (enableTime) {
-    const hoursMatch = format.indexOf('hh');
-    if (hoursMatch > -1) hours = parseInt(dateString.substring(hoursMatch, hoursMatch + 2), 10);
+    const hoursMatch = format.indexOf("hh");
+    if (hoursMatch > -1)
+      hours = parseInt(dateString.substring(hoursMatch, hoursMatch + 2), 10);
 
-    const minutesMatch = format.indexOf('mm');
-    if (minutesMatch > -1) minutes = parseInt(dateString.substring(minutesMatch, minutesMatch + 2), 10);
-    
-    const secondsMatch = format.indexOf('ss'); 
-    if (secondsMatch > -1) seconds = parseInt(dateString.substring(secondsMatch, secondsMatch + 2), 10);
+    const minutesMatch = format.indexOf("mm");
+    if (minutesMatch > -1)
+      minutes = parseInt(
+        dateString.substring(minutesMatch, minutesMatch + 2),
+        10
+      );
 
-    const KMatch = format.indexOf('K');
+    const secondsMatch = format.indexOf("ss");
+    if (secondsMatch > -1)
+      seconds = parseInt(
+        dateString.substring(secondsMatch, secondsMatch + 2),
+        10
+      );
+
+    const KMatch = format.indexOf("K");
     if (KMatch > -1) {
       const amPm = dateString.substring(KMatch, KMatch + 2).toUpperCase();
-      if (amPm === 'PM' && hours < 12) hours += 12;
-      if (amPm === 'AM' && hours === 12) hours = 0; // Handle 12 AM (midnight)
+      if (amPm === "PM" && hours < 12) hours += 12;
+      if (amPm === "AM" && hours === 12) hours = 0; // Handle 12 AM (midnight)
     }
   }
 
   const parsed = new Date(year, month, day, hours, minutes, seconds);
   // Check if components resulted in a valid date (e.g., not Feb 30)
-  if (isNaN(parsed.getTime()) || 
-      parsed.getFullYear() !== year || 
-      parsed.getMonth() !== month || 
-      parsed.getDate() !== day) {
+  if (
+    isNaN(parsed.getTime()) ||
+    parsed.getFullYear() !== year ||
+    parsed.getMonth() !== month ||
+    parsed.getDate() !== day
+  ) {
     return null;
   }
   return parsed;
@@ -181,9 +210,9 @@ export const startOfWeek = (date: Date, firstDayOfWeek: number = 0): Date => {
   const newDate = new Date(date);
   const day = newDate.getDay();
   // Adjust diff to handle when current day is before firstDayOfWeek (e.g., firstDayOfWeek=1 (Mon), current=0 (Sun))
-  const diff = (day < firstDayOfWeek ? (day + 7) : day) - firstDayOfWeek;
+  const diff = (day < firstDayOfWeek ? day + 7 : day) - firstDayOfWeek;
   newDate.setDate(newDate.getDate() - diff);
-  newDate.setHours(0,0,0,0); // Normalize to the very start of the day
+  newDate.setHours(0, 0, 0, 0); // Normalize to the very start of the day
   return newDate;
 };
 
@@ -196,7 +225,7 @@ export const startOfWeek = (date: Date, firstDayOfWeek: number = 0): Date => {
 export const endOfWeek = (date: Date, firstDayOfWeek: number = 0): Date => {
   const newDate = startOfWeek(date, firstDayOfWeek);
   newDate.setDate(newDate.getDate() + 6); // Add 6 days to get to the end of the week
-  newDate.setHours(23,59,59,999); // Normalize to the very end of the day
+  newDate.setHours(23, 59, 59, 999); // Normalize to the very end of the day
   return newDate;
 };
 
@@ -206,7 +235,10 @@ export const endOfWeek = (date: Date, firstDayOfWeek: number = 0): Date => {
  * @param date2 The second date. Can be null or undefined.
  * @returns `true` if both dates are valid and fall on the same day, `false` otherwise.
  */
-export const isSameDay = (date1?: Date | null, date2?: Date | null): boolean => {
+export const isSameDay = (
+  date1?: Date | null,
+  date2?: Date | null
+): boolean => {
   if (!date1 || !date2) return false;
   return (
     date1.getFullYear() === date2.getFullYear() &&
@@ -257,11 +289,11 @@ export const isDateDisabled = (
   if (minDate && isBeforeDay(date, minDate)) return true;
   if (maxDate && isAfterDay(date, maxDate)) return true;
   if (disabledDates) {
-    if (typeof disabledDates === 'function') {
+    if (typeof disabledDates === "function") {
       return disabledDates(date);
     }
     // For array, check if 'date' isSameDay as any date in 'disabledDates'
-    return disabledDates.some(disabledDate => isSameDay(date, disabledDate));
+    return disabledDates.some((disabledDate) => isSameDay(date, disabledDate));
   }
   return false;
 };
@@ -277,7 +309,7 @@ export const getYearsRange = (year: number, count: number): number[] => {
   // Calculate the start year of the block of 'count' years that 'year' falls into.
   // Example: year=2023, count=12 -> startYear = floor((2023-1)/12)*12 + 1 = floor(2022/12)*12 + 1 = floor(168.5)*12 + 1 = 168*12 + 1 = 2016 + 1 = 2017.
   // This logic ensures blocks align (e.g. 2017-2028, 2029-2040)
-  const blockIndex = Math.floor((year - 1) / count); 
+  const blockIndex = Math.floor((year - 1) / count);
   const startYear = blockIndex * count + 1;
   return Array.from({ length: count }, (_, i) => startYear + i);
 };
@@ -305,9 +337,15 @@ export const isDateInRange = (date: Date, range: DateRange): boolean => {
  * @param date2 The second date. Can be null or undefined.
  * @returns `true` if both dates are valid and their hours and minutes are identical, `false` otherwise.
  */
-export const isTimeEqual = (date1?: Date | null, date2?: Date | null): boolean => {
+export const isTimeEqual = (
+  date1?: Date | null,
+  date2?: Date | null
+): boolean => {
   if (!date1 || !date2) return false;
-  return date1.getHours() === date2.getHours() && date1.getMinutes() === date2.getMinutes();
+  return (
+    date1.getHours() === date2.getHours() &&
+    date1.getMinutes() === date2.getMinutes()
+  );
 };
 
 /**
@@ -327,7 +365,7 @@ export const setTime = (date: Date, hours: number, minutes: number): Date => {
 /**
  * Finds the first focusable (i.e., not disabled) date starting from `currentDate`,
  * moving in the specified `direction`. Considers `minDate`, `maxDate`, and `disabledDates`.
- * 
+ *
  * @param currentDate The date to start searching from.
  * @param minDate Optional minimum selectable date.
  * @param maxDate Optional maximum selectable date.
@@ -347,21 +385,36 @@ export const getFirstFocusableDate = (
   direction: number = 1 // Default to searching forward
 ): Date => {
   let date = new Date(currentDate);
-  date.setHours(0,0,0,0); // Normalize time for day-based comparisons
+  date.setHours(0, 0, 0, 0); // Normalize time for day-based comparisons
 
   // If direction is 0, check current date first. If valid, return it.
   // Otherwise, search forward, then backward if necessary.
   if (direction === 0) {
     if (!isDateDisabled(date, minDate, maxDate, disabledDates)) return date;
-    
+
     // Try forward first
-    const forwardDate = getFirstFocusableDate(new Date(currentDate), minDate, maxDate, disabledDates, 1);
+    const forwardDate = getFirstFocusableDate(
+      new Date(currentDate),
+      minDate,
+      maxDate,
+      disabledDates,
+      1
+    );
     // If forward search found a *different* valid date, return it
-    if (!isSameDay(forwardDate, currentDate) && !isDateDisabled(forwardDate, minDate, maxDate, disabledDates)) {
-        return forwardDate;
+    if (
+      !isSameDay(forwardDate, currentDate) &&
+      !isDateDisabled(forwardDate, minDate, maxDate, disabledDates)
+    ) {
+      return forwardDate;
     }
     // If forward didn't yield a suitable result, try backward
-    return getFirstFocusableDate(new Date(currentDate), minDate, maxDate, disabledDates, -1);
+    return getFirstFocusableDate(
+      new Date(currentDate),
+      minDate,
+      maxDate,
+      disabledDates,
+      -1
+    );
   }
 
   const maxIterations = 365 * 2; // Limit search to approximately 2 years to prevent infinite loops in edge cases
@@ -375,19 +428,33 @@ export const getFirstFocusableDate = (
     if (minDate && direction === -1 && isBeforeDay(date, minDate)) break;
     if (maxDate && direction === 1 && isAfterDay(date, maxDate)) break;
   }
-  
+
   // Fallback logic if no focusable date is found within iterations:
   // Try to return minDate if searching forward from before minDate, or if direction was backward and we hit minDate.
-  if (direction === 1 && minDate && isAfterDay(minDate, currentDate) && !isDateDisabled(minDate, undefined, maxDate, disabledDates)) return minDate;
+  if (
+    direction === 1 &&
+    minDate &&
+    isAfterDay(minDate, currentDate) &&
+    !isDateDisabled(minDate, undefined, maxDate, disabledDates)
+  )
+    return minDate;
   // Try to return maxDate if searching backward from after maxDate, or if direction was forward and we hit maxDate.
-  if (direction === -1 && maxDate && isBeforeDay(maxDate, currentDate) && !isDateDisabled(maxDate, minDate, undefined, disabledDates)) return maxDate;
-  
+  if (
+    direction === -1 &&
+    maxDate &&
+    isBeforeDay(maxDate, currentDate) &&
+    !isDateDisabled(maxDate, minDate, undefined, disabledDates)
+  )
+    return maxDate;
+
   // As a last resort, if minDate/maxDate themselves are focusable, prefer them.
-  if (minDate && !isDateDisabled(minDate, undefined, maxDate, disabledDates)) return minDate;
-  if (maxDate && !isDateDisabled(maxDate, minDate, undefined, disabledDates)) return maxDate;
-  
+  if (minDate && !isDateDisabled(minDate, undefined, maxDate, disabledDates))
+    return minDate;
+  if (maxDate && !isDateDisabled(maxDate, minDate, undefined, disabledDates))
+    return maxDate;
+
   // If all else fails, return the original date (it might be disabled, but it's a fallback)
-  return currentDate; 
+  return currentDate;
 };
 
 /**
@@ -398,19 +465,25 @@ export const getFirstFocusableDate = (
  * @param prefix An optional prefix for the ID string. Defaults to "chronopick".
  * @returns A unique ID string, e.g., "chronopick-day-2023-10-26".
  */
-export const generateDateId = (date: Date, view: CalendarView, prefix: string = "chronopick"): string => {
+export const generateDateId = (
+  date: Date,
+  view: CalendarView,
+  prefix: string = "chronopick"
+): string => {
   switch (view) {
     case CalendarView.Days:
       return `${prefix}-day-${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
     case CalendarView.Months:
       // For months, use year and month index for uniqueness within the year view
-      return `${prefix}-month-${date.getFullYear()}-${date.getMonth()}`; 
+      return `${prefix}-month-${date.getFullYear()}-${date.getMonth()}`;
     case CalendarView.Years:
       // For years, use the year itself
       return `${prefix}-year-${date.getFullYear()}`;
     default:
       // Fallback for unknown view, though this shouldn't be reached in normal operation
       const now = new Date();
-      return `${prefix}-unknown-${now.getTime()}-${Math.random().toString(36).substring(7)}`;
+      return `${prefix}-unknown-${now.getTime()}-${Math.random()
+        .toString(36)
+        .substring(7)}`;
   }
 };

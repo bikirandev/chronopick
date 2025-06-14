@@ -1,0 +1,31 @@
+/* Import Tailwind's base, components, and utilities styles */
+
+/* Styles for the portal container where the picker is rendered (non-inline mode) */
+.chronopickContainer {
+  position: absolute; /* Crucial for JavaScript-based positioning */
+  z-index: 1050; /* High z-index to ensure it appears above other content */
+  /* top, left properties will be dynamically set by JavaScript */
+}
+
+/* Utility class for visually hidden content, primarily for accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Base class for picker open/close animations */
+.chronopick-picker-content-animated {
+  transition: opacity 150ms ease-out, transform 150ms ease-out;
+}
+
+/* Apply Inter font if you want it bundled or ensure users have it
+body {
+  font-family: "Inter", sans-serif;
+} */

@@ -5,7 +5,7 @@ import {
   DateRange,
   DayState,
   CalendarView,
-} from "../../../types";
+} from "../types";
 import {
   isSameDay,
   isDateDisabled,
@@ -16,6 +16,8 @@ import {
 } from "../utils/dateUtils";
 import { DAY_NAMES_SHORT } from "../utils/constants";
 import { useChronoPickCore } from "../hooks/useChronoPickCore";
+import { cn } from "../utils/cn";
+import style from "../styles/DayView.module.css";
 
 // Infer the return type of useChronoPickCore for strong typing of props derived from the hook.
 type CoreReturnType = ReturnType<typeof useChronoPickCore>;
@@ -152,86 +154,37 @@ const DayView: React.FC<DayViewProps> = ({
    * @returns A string of CSS classes.
    */
   const dayClasses = (day: Date, dayStates: DayState[]): string => {
-    let classes =
-      "w-10 h-10 flex items-center justify-center rounded-full cursor-pointer transition-colors duration-150 ease-in-out text-sm relative ";
-
-    if (dayStates.includes(DayState.Disabled)) {
-      classes +=
-        "text-gray-400 cursor-not-allowed bg-gray-100 dark:bg-slate-700 dark:text-slate-500 ";
-    } else {
-      // General hover for non-disabled days
-      classes += "hover:bg-blue-100 dark:hover:bg-blue-800 ";
-    }
-
-    if (
-      dayStates.includes(DayState.Today) &&
-      !dayStates.includes(DayState.Selected) &&
-      !dayStates.includes(DayState.InRange)
-    ) {
-      // Style for "today" if it's not selected or part of a range
-      classes +=
-        "text-blue-600 dark:text-blue-400 font-semibold border border-blue-500 dark:border-blue-700 ";
-    }
-
-    if (dayStates.includes(DayState.Selected)) {
-      // Base style for any selected day (single, multiple, range start/end)
-      classes +=
-        "bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-400 ";
-    }
-
-    // Specific styles for range selection
-    if (
-      dayStates.includes(DayState.StartRange) ||
-      dayStates.includes(DayState.EndRange)
-    ) {
-      // Stronger background for range start/end points
-      classes += "bg-blue-700 text-white dark:bg-blue-600 ";
-    }
-    if (
-      dayStates.includes(DayState.InRange) &&
-      !dayStates.includes(DayState.Selected) &&
-      !dayStates.includes(DayState.StartRange) &&
-      !dayStates.includes(DayState.EndRange)
-    ) {
-      // Style for days within a selected range (not start/end)
-      classes +=
-        "bg-blue-200 text-blue-800 dark:bg-blue-700 dark:text-blue-200 rounded-none "; // Remove rounding for continuous range feel
-    }
-
-    // Adjust rounding for start/end of range to connect visually with InRange days
-    if (
-      dayStates.includes(DayState.StartRange) &&
-      dayStates.includes(DayState.InRange) &&
-      !dayStates.includes(DayState.EndRange)
-    ) {
-      classes += "rounded-r-none "; // Flatten right edge if it's start of range and also in range
-    }
-    if (
-      dayStates.includes(DayState.EndRange) &&
-      dayStates.includes(DayState.InRange) &&
-      !dayStates.includes(DayState.StartRange)
-    ) {
-      classes += "rounded-l-none "; // Flatten left edge if it's end of range and also in range
-    }
-
-    // Hover effect for range selection preview
-    if (
-      dayStates.includes(DayState.HoverRange) &&
-      !dayStates.includes(DayState.Selected)
-    ) {
-      classes += "bg-blue-100 dark:bg-blue-800 ";
-    }
-
-    // Keyboard focus indicator (pink ring)
-    if (
-      focusedDate &&
-      isSameDay(day, focusedDate) &&
-      !dayStates.includes(DayState.Disabled)
-    ) {
-      classes +=
-        "ring-2 ring-offset-1 ring-offset-white dark:ring-offset-slate-800 ring-pink-500 ";
-    }
-    return classes.trim(); // Trim any trailing space
+    return cn(style.dayButton, {
+      [style.dayButtonDisabled]: dayStates.includes(DayState.Disabled),
+      [style.dayButtonHover]: !dayStates.includes(DayState.Disabled),
+      [style.today]:
+        dayStates.includes(DayState.Today) &&
+        !dayStates.includes(DayState.Selected) &&
+        !dayStates.includes(DayState.InRange),
+      [style.selected]: dayStates.includes(DayState.Selected),
+      [style.startRange]: dayStates.includes(DayState.StartRange),
+      [style.endRange]: dayStates.includes(DayState.EndRange),
+      [style.inRange]:
+        dayStates.includes(DayState.InRange) &&
+        !dayStates.includes(DayState.Selected) &&
+        !dayStates.includes(DayState.StartRange) &&
+        !dayStates.includes(DayState.EndRange),
+      [style.startRangeRounded]:
+        dayStates.includes(DayState.StartRange) &&
+        dayStates.includes(DayState.InRange) &&
+        !dayStates.includes(DayState.EndRange),
+      [style.endRangeRounded]:
+        dayStates.includes(DayState.EndRange) &&
+        dayStates.includes(DayState.InRange) &&
+        !dayStates.includes(DayState.StartRange),
+      [style.hoverRange]:
+        dayStates.includes(DayState.HoverRange) &&
+        !dayStates.includes(DayState.Selected),
+      [style.focused]:
+        focusedDate &&
+        isSameDay(day, focusedDate) &&
+        !dayStates.includes(DayState.Disabled),
+    });
   };
 
   return (
