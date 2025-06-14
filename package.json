@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && npm run build:css",
+    "build": "node build.cjs",
     "copy:css": "cpx ./src/style.css ./dist/",
     "build:css": "tailwindcss -c tailwind.config.js -i ./src/style.css -o ./dist/style.css",
     "preview": "vite preview",
