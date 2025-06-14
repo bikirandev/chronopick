@@ -13,10 +13,10 @@ import {
   isBeforeDay,
   formatDate,
   generateDateId,
-} from "../utils/dateUtils";
-import { DAY_NAMES_SHORT } from "../utils/constants";
+} from "../../utils/dateUtils";
+import { DAY_NAMES_SHORT } from "../../utils/constants";
 import { useChronoPickCore } from "../hooks/useChronoPickCore";
-import { cn } from "../utils/cn";
+import { cn } from "../../utils/cn";
 import style from "../styles/DayView.module.css";
 
 // Infer the return type of useChronoPickCore for strong typing of props derived from the hook.

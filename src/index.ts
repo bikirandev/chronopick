@@ -5,18 +5,14 @@
  */
 
 // Export the main component
-export { default as ChronoPick } from "./components/ChronoPick/ChronoPick";
+export { default as ChronoPick } from "./ChronoPick";
 
 // Export core types for users of the library
 export type {
   ChronoPickProps,
   SelectedDateType,
   DateRange,
-} from "./components/ChronoPick/types";
-
-// Export enums that might be useful for consumers
-export {
   ChronoPickMode,
   DayState,
   CalendarView,
-} from "./components/ChronoPick/types";
+} from "./components/types";

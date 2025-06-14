@@ -1,6 +1,6 @@
 {
   "name": "@bikiran/chronopick",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "A modern React date and time picker component with Tailwind CSS styling.",
   "main": "dist/chronopick.umd.js",
   "module": "dist/chronopick.mjs",

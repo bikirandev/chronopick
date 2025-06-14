@@ -5,17 +5,19 @@ import {
   ChronoPickMode,
   DateRange,
   CalendarView,
-} from "./types";
+} from "./components/types";
 import {
   DEFAULT_DATE_FORMAT,
   MONTH_NAMES_FULL,
   DEFAULT_TIME_FORMAT,
 } from "./utils/constants";
 import { generateDateId, formatDate } from "./utils/dateUtils";
-import { useChronoPickCore } from "./hooks/useChronoPickCore";
+import { useChronoPickCore } from "./components/hooks/useChronoPickCore";
 import ChronoPickInput from "./ChronoPickInput";
 import ChronoPickHeader from "./ChronoPickHeader";
-import { DayView, MonthView, YearView } from "./CalendarViews";
+import DayView from "./components/views/DayView";
+import MonthView from "./components/views/MonthView";
+import YearView from "./components/views/YearView";
 import TimePicker from "./TimePicker";
 import style from "../ChronoPick/styles/global.module.css";
 

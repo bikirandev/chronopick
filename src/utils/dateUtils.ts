@@ -3,7 +3,7 @@ import {
   MONTH_NAMES_SHORT,
   DAY_NAMES_SHORT,
 } from "./constants";
-import { DateRange, CalendarView } from "../types";
+import { DateRange, CalendarView } from "../components/types";
 
 /**
  * Formats a Date object into a string based on the provided format string.
