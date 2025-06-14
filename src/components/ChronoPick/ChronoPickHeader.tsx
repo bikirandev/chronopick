@@ -6,6 +6,7 @@ import ChevronRightIcon from "./icons/ChevronRightIcon";
 import ChevronDoubleLeftIcon from "./icons/ChevronDoubleLeftIcon";
 import ChevronDoubleRightIcon from "./icons/ChevronDoubleRightIcon";
 import { useChronoPickCore } from "./hooks/useChronoPickCore";
+import style from "./styles/ChronoPickHeader.module.css";
 
 // Infer the return type of useChronoPickCore to get types for its returned state and functions.
 // This ensures that ChronoPickHeaderProps are strongly typed based on what useChronoPickCore provides.
@@ -34,22 +35,22 @@ interface ChronoPickHeaderProps {
 
   // Refs to header buttons for programmatic focus management (e.g., after keyboard navigation).
   /** Ref for the "Previous Year" button (double chevron left). */
-  prevYearBtnRef: React.RefObject<HTMLButtonElement>;
+  prevYearBtnRef: React.RefObject<HTMLButtonElement | null>;
   /** Ref for the "Previous" button (single chevron left - month, year, or block of years). */
-  prevMonthBtnRef: React.RefObject<HTMLButtonElement>;
+  prevMonthBtnRef: React.RefObject<HTMLButtonElement | null>;
   /** Ref for the button displaying the current month's name (clickable to switch to Months view). */
-  monthBtnRef: React.RefObject<HTMLButtonElement>;
+  monthBtnRef: React.RefObject<HTMLButtonElement | null>;
   /** Ref for the button displaying the current year (clickable to switch to Years view). */
-  yearBtnRef: React.RefObject<HTMLButtonElement>;
+  yearBtnRef: React.RefObject<HTMLButtonElement | null>;
   /** Ref for the "Next" button (single chevron right). */
-  nextMonthBtnRef: React.RefObject<HTMLButtonElement>;
+  nextMonthBtnRef: React.RefObject<HTMLButtonElement | null>;
   /** Ref for the "Next Year" button (double chevron right). */
-  nextYearBtnRef: React.RefObject<HTMLButtonElement>;
+  nextYearBtnRef: React.RefObject<HTMLButtonElement | null>;
 
   /** Text representation of the current year range (e.g., "2020 - 2031") displayed in the Years view. */
   yearRangeText: string;
   /** Ref to the main grid container, used to return focus to the grid after header interactions. */
-  gridContainerRef: React.RefObject<HTMLDivElement>;
+  gridContainerRef: React.RefObject<HTMLDivElement | null>;
 }
 
 /**
@@ -153,10 +154,8 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
   };
 
   return (
-    <div className="flex items-center justify-between mb-3">
-      {/* Left navigation controls: Previous Year (if Days view), Previous Month/Year/Block */}
-      <div className="flex items-center">
-        {/* "Previous Year" button (double chevron), only shown in Days view */}
+    <div className={style.container}>
+      <div className={style.navGroup}>
         {currentView === CalendarView.Days && (
           <button
             ref={prevYearBtnRef}
@@ -165,29 +164,27 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
               handleYearChange(-1);
               gridContainerRef.current?.focus();
             }}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors mr-1 focus:ring-2 focus:ring-pink-500 outline-none"
+            className={`${style.navButton} ${style.navButtonDark} mr-1`}
             aria-label="Previous year"
           >
             <ChevronDoubleLeftIcon />
           </button>
         )}
-        {/* "Previous" button (single chevron) */}
+
         <button
           ref={prevMonthBtnRef}
           type="button"
           onClick={handlePrevNav}
-          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors focus:ring-2 focus:ring-pink-500 outline-none"
+          className={`${style.navButton} ${style.navButtonDark}`}
           aria-label={getPrevNavLabel()}
         >
           <ChevronLeftIcon />
         </button>
       </div>
 
-      {/* Center content: Month/Year display and view switchers */}
-      <div className="flex-grow text-center flex justify-center space-x-1 px-1">
+      <div className={style.centerControls}>
         {currentView === CalendarView.Days && (
           <>
-            {/* Button to display current month, clickable to switch to Months view */}
             <button
               ref={monthBtnRef}
               type="button"
@@ -195,14 +192,13 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
                 setCurrentView(CalendarView.Months);
                 gridContainerRef.current?.focus();
               }}
-              className="px-3 py-1 text-sm font-semibold rounded hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors focus:ring-2 focus:ring-pink-500 outline-none"
+              className={`${style.labelButton} ${style.labelButtonDark}`}
               aria-label={`Change to month view. Current month: ${
                 MONTH_NAMES_FULL[currentMonthDate.getMonth()]
               }`}
             >
               {MONTH_NAMES_FULL[currentMonthDate.getMonth()]}
             </button>
-            {/* Button to display current year, clickable to switch to Years view */}
             <button
               ref={yearBtnRef}
               type="button"
@@ -210,52 +206,50 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
                 setCurrentView(CalendarView.Years);
                 gridContainerRef.current?.focus();
               }}
-              className="px-3 py-1 text-sm font-semibold rounded hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors focus:ring-2 focus:ring-pink-500 outline-none"
+              className={`${style.labelButton} ${style.labelButtonDark}`}
               aria-label={`Change to year view. Current year: ${currentMonthDate.getFullYear()}`}
             >
               {currentMonthDate.getFullYear()}
             </button>
           </>
         )}
+
         {currentView === CalendarView.Months && (
-          /* Button to display current year (in Months view), clickable to switch to Years view */
           <button
-            ref={yearBtnRef} // Re-using yearBtnRef for simplicity in focus management
+            ref={yearBtnRef}
             type="button"
             onClick={() => {
               setCurrentView(CalendarView.Years);
               gridContainerRef.current?.focus();
             }}
-            className="px-3 py-1 text-sm font-semibold rounded hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors focus:ring-2 focus:ring-pink-500 outline-none"
+            className={`${style.labelButton} ${style.labelButtonDark}`}
             aria-label={`Change to year view. Current year: ${currentMonthDate.getFullYear()}`}
           >
             {currentMonthDate.getFullYear()}
           </button>
         )}
+
         {currentView === CalendarView.Years && (
-          /* Text display for the current range of years (e.g., "2020 - 2031") */
           <span
-            className="px-3 py-1 text-sm font-semibold"
-            aria-label={`Currently showing years ${yearRangeText}`} // Provides context for screen readers
+            className={style.yearRange}
+            aria-label={`Currently showing years ${yearRangeText}`}
           >
             {yearRangeText}
           </span>
         )}
       </div>
 
-      {/* Right navigation controls: Next Month/Year/Block, Next Year (if Days view) */}
-      <div className="flex items-center">
-        {/* "Next" button (single chevron) */}
+      <div className={style.navGroup}>
         <button
           ref={nextMonthBtnRef}
           type="button"
           onClick={handleNextNav}
-          className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors focus:ring-2 focus:ring-pink-500 outline-none"
+          className={`${style.navButton} ${style.navButtonDark}`}
           aria-label={getNextNavLabel()}
         >
           <ChevronRightIcon />
         </button>
-        {/* "Next Year" button (double chevron), only shown in Days view */}
+
         {currentView === CalendarView.Days && (
           <button
             ref={nextYearBtnRef}
@@ -264,7 +258,7 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
               handleYearChange(1);
               gridContainerRef.current?.focus();
             }}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors ml-1 focus:ring-2 focus:ring-pink-500 outline-none"
+            className={`${style.navButton} ${style.navButtonDark} ml-1`}
             aria-label="Next year"
           >
             <ChevronDoubleRightIcon />
