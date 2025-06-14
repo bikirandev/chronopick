@@ -5,21 +5,21 @@ import {
   ChronoPickMode,
   DateRange,
   CalendarView,
-} from "./components/types";
+} from "../../lib/types/TChronoPick";
 import {
   DEFAULT_DATE_FORMAT,
   MONTH_NAMES_FULL,
   DEFAULT_TIME_FORMAT,
-} from "./utils/constants";
-import { generateDateId, formatDate } from "./utils/dateUtils";
-import { useChronoPickCore } from "./components/hooks/useChronoPickCore";
+} from "../../lib/utils/constants";
+import { generateDateId, formatDate } from "../../lib/utils/dateUtils";
+import { useChronoPickCore } from "../../lib/hooks/useChronoPickCore";
 import ChronoPickInput from "./ChronoPickInput";
 import ChronoPickHeader from "./ChronoPickHeader";
-import DayView from "./components/views/DayView";
-import MonthView from "./components/views/MonthView";
-import YearView from "./components/views/YearView";
+import DayView from "../Chronopick/views/DayView";
+import MonthView from "../Chronopick/views/MonthView";
+import YearView from "../Chronopick/views/YearView";
 import TimePicker from "./TimePicker";
-import style from "../ChronoPick/styles/global.module.css";
+import style from "./styles/global.module.css";
 
 /**
  * ChronoPick component - A modern React date and time picker.

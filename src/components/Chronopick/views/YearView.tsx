@@ -1,7 +1,11 @@
 import React from "react";
-import { CalendarView, SelectedDateType } from "../types";
-import { generateDateId, isAfterDay, isBeforeDay } from "../../utils/dateUtils";
-import { useChronoPickCore } from "../hooks/useChronoPickCore";
+import { CalendarView, SelectedDateType } from "../../../lib/types/TChronoPick";
+import {
+  generateDateId,
+  isAfterDay,
+  isBeforeDay,
+} from "../../../lib/utils/dateUtils";
+import { useChronoPickCore } from "../../../lib/hooks/useChronoPickCore";
 import styles from "../styles/YearView.module.css";
 
 type CoreReturnType = ReturnType<typeof useChronoPickCore>;

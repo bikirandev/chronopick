@@ -1,68 +1,60 @@
 {
   "name": "@bikiran/chronopick",
-  "version": "0.1.5",
-  "description": "A modern React date and time picker component with Tailwind CSS styling.",
-  "main": "dist/chronopick.umd.js",
-  "module": "dist/chronopick.mjs",
+  "version": "1.0.0",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/chronopick.mjs",
-      "require": "./dist/chronopick.umd.js"
-    },
-    "./dist/style.css": "./dist/style.css"
-  },
   "files": [
-    "dist",
-    "dist/style.css"
+    "dist"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite example",
     "build": "node build.cjs",
-    "copy:css": "cpx ./src/style.css ./dist/",
-    "build:css": "tailwindcss -c tailwind.config.js -i ./src/style.css -o ./dist/style.css",
-    "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^24.0.1",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "@typescript-eslint/eslint-plugin": "^8.34.0",
-    "@typescript-eslint/parser": "^8.34.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.19",
-    "cpx": "^1.5.0",
-    "eslint": "^9.29.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^4.1.10",
-    "typescript": "^5.4.5",
-    "vite": "^6.3.5",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-build": "vite build",
+    "preview": "vite preview example",
+    "prepublishOnly": "npm run build",
+    "pack-local": "npm run build && npm pack",
+    "clean": "node clean.js",
+    "test": "vitest",
+    "build:tailwind": "npm exec tailwindcss -i src/tailwind.css -o dist/output.css --minify"
   },
   "keywords": [
     "react",
-    "datepicker",
-    "datetimepicker",
-    "calendar",
-    "chronopick",
-    "tailwindcss"
+    "button",
+    "component",
+    "ui"
   ],
-  "author": "Bikiran",
+  "author": "Kumar Bishojit Paul",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
+  "type": "module",
+  "description": "A simple and reusable React input component library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bikirandev/bikiran-utils.git"
   },
+  "bugs": {
+    "url": "https://github.com/bikirandev/bikiran-utils/issues"
+  },
+  "homepage": "https://github.com/bikirandev/bikiran-utils#readme",
   "dependencies": {
     "clsx": "^2.1.1",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.2.0"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.15.2",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "copyfiles": "^2.4.1",
+    "jsdom": "^26.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.3",
+    "vitest": "^3.1.2"
   }
 }

@@ -1,11 +1,11 @@
 import React from "react";
-import { CalendarView } from "./components/types";
-import { MONTH_NAMES_FULL, YEARS_PER_VIEW } from "./utils/constants";
-import ChevronLeftIcon from "./components/icons/ChevronLeftIcon";
-import ChevronRightIcon from "./components/icons/ChevronRightIcon";
-import ChevronDoubleLeftIcon from "./components/icons/ChevronDoubleLeftIcon";
-import ChevronDoubleRightIcon from "./components/icons/ChevronDoubleRightIcon";
-import { useChronoPickCore } from "./components/hooks/useChronoPickCore";
+import { CalendarView } from "../../lib/types/TChronoPick";
+import { MONTH_NAMES_FULL, YEARS_PER_VIEW } from "../../lib/utils/constants";
+import ChevronLeftIcon from "./icons/ChevronLeftIcon";
+import ChevronRightIcon from "./icons/ChevronRightIcon";
+import ChevronDoubleLeftIcon from "./icons/ChevronDoubleLeftIcon";
+import ChevronDoubleRightIcon from "./icons/ChevronDoubleRightIcon";
+import { useChronoPickCore } from "../../lib/hooks/useChronoPickCore";
 import style from "./styles/ChronoPickHeader.module.css";
 
 // Infer the return type of useChronoPickCore to get types for its returned state and functions.

@@ -1,5 +1,5 @@
 import React from "react";
-import CalendarIcon from "./components/icons/CalendarIcon";
+import CalendarIcon from "./icons/CalendarIcon";
 import styles from "./styles/ChronoPickInput.module.css";
 
 interface ChronoPickInputProps {

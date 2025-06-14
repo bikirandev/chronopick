@@ -1,11 +1,4 @@
-/**
- * Main entry point for the @bikiran/chronopick library.
- * This file exports the primary ChronoPick component and related types
- * that users will import when using the package.
- */
-
-// Export the main component
-export { default as ChronoPick } from "./ChronoPick";
+export { default as ChronoPick } from "./components/Chronopick/ChronoPick";
 
 // Export core types for users of the library
 export type {
@@ -15,4 +8,4 @@ export type {
   ChronoPickMode,
   DayState,
   CalendarView,
-} from "./components/types";
+} from "./lib/types/TChronoPick";
