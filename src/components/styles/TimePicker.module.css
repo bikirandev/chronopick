@@ -1,41 +1,25 @@
 /* TimePicker.module.css */
 
 .wrapper {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color, #e5e7eb);
+  @apply mt-4 pt-4 border-t border-[var(--border-color,#e5e7eb)];
 }
 
 .label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-color, #374151);
-  margin-bottom: 0.5rem;
-  text-align: center;
+  @apply text-sm font-medium text-[var(--text-color,#374151)] mb-2 text-center;
 }
 
 .group {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  @apply flex items-center justify-center gap-2;
 }
 
 .select {
-  padding: 0.5rem;
-  border: 1px solid var(--border-color, #d1d5db);
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  background-color: var(--bg, #ffffff);
-  color: var(--text-color, #1f2937);
+  @apply p-2 border border-[var(--border-color,#d1d5db)] rounded-md text-sm bg-[var(--bg,#ffffff)] text-[var(--text-color,#1f2937)];
 }
 
 .select:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  @apply outline-none border-blue-500 shadow-[0_0_0_2px_rgba(59,130,246,0.5)];
 }
 
 .separator {
-  color: var(--separator-color, #6b7280);
+  @apply text-[var(--separator-color,#6b7280)];
 }

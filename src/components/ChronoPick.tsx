@@ -5,14 +5,14 @@ import {
   ChronoPickMode,
   DateRange,
   CalendarView,
-} from "../lib/types/TChronoPick";
+} from "./lib/types/TChronoPick";
 import {
   DEFAULT_DATE_FORMAT,
   MONTH_NAMES_FULL,
   DEFAULT_TIME_FORMAT,
-} from "../lib/utils/constants";
-import { generateDateId, formatDate } from "../lib/utils/dateUtils";
-import { useChronoPickCore } from "../lib/hooks/useChronoPickCore";
+} from "./lib/utils/constants";
+import { generateDateId, formatDate } from "./lib/utils/dateUtils";
+import { useChronoPickCore } from "./lib/hooks/useChronoPickCore";
 import ChronoPickInput from "./ChronoPickInput";
 import ChronoPickHeader from "./ChronoPickHeader";
 import DayView from "./views/DayView";
@@ -430,7 +430,7 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
       aria-modal={!inline} // True if not inline, indicating it traps focus
       aria-labelledby={pickerLabelId} // Associates with the hidden h2 label
       // Apply base animation class and dynamic animation state classes
-      className={`bg-white dark:bg-slate-800 shadow-2xl rounded-lg p-4 w-[21rem] text-slate-800 dark:text-slate-200 chronopick-picker-content-animated ${animationClasses} ${
+      className={`bg-white dark:bg-slate-800 shadow-2xl rounded-lg p-4 w-[21rem] text-slate-800 dark:text-slate-200 chronopick-picker-content-animated pointer-events-auto ${animationClasses} ${
         inline ? "relative" : ""
       }`}
       onClick={(e) => e.stopPropagation()} // Prevent clicks inside picker from closing it (if click outside logic is general)
@@ -484,8 +484,8 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
                 MONTH_NAMES_FULL[core.currentMonthDate.getMonth()]
               } ${core.currentMonthDate.getFullYear()}`
             : core.currentView === CalendarView.Months
-            ? String(core.currentMonthDate.getFullYear())
-            : yearRangeText
+              ? String(core.currentMonthDate.getFullYear())
+              : yearRangeText
         }`}
         onKeyDown={handleGridKeyDown} // Handle arrow key navigation etc. within the grid
         className="outline-none rounded" // Basic styling, focus outline handled by cells

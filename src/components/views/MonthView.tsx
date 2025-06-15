@@ -1,12 +1,12 @@
 import React from "react";
-import { CalendarView, SelectedDateType } from "../../lib/types/TChronoPick";
-import { MONTH_NAMES_FULL } from "../../lib/utils/constants";
+import { CalendarView, SelectedDateType } from "./../lib/types/TChronoPick";
+import { MONTH_NAMES_FULL } from "./../lib/utils/constants";
 import {
   generateDateId,
   isAfterDay,
   isBeforeDay,
-} from "../../lib/utils/dateUtils";
-import { useChronoPickCore } from "../../lib/hooks/useChronoPickCore";
+} from "./../lib/utils/dateUtils";
+import { useChronoPickCore } from "./../lib/hooks/useChronoPickCore";
 import styles from "../styles/MonthView.module.css";
 
 type CoreReturnType = ReturnType<typeof useChronoPickCore>;

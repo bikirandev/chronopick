@@ -5,7 +5,7 @@ import {
   DateRange,
   DayState,
   CalendarView,
-} from "../../lib/types/TChronoPick";
+} from "./../lib/types/TChronoPick";
 import {
   isSameDay,
   isDateDisabled,
@@ -13,10 +13,10 @@ import {
   isBeforeDay,
   formatDate,
   generateDateId,
-} from "../../lib/utils/dateUtils";
-import { DAY_NAMES_SHORT } from "../../lib/utils/constants";
-import { useChronoPickCore } from "../../lib/hooks/useChronoPickCore";
-import { cn } from "../../lib/utils/cn";
+} from "./../lib/utils/dateUtils";
+import { DAY_NAMES_SHORT } from "./../lib/utils/constants";
+import { useChronoPickCore } from "./../lib/hooks/useChronoPickCore";
+import { cn } from "./../lib/utils/cn";
 import style from "../styles/DayView.module.css";
 
 // Infer the return type of useChronoPickCore for strong typing of props derived from the hook.
