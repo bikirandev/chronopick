@@ -3,10 +3,12 @@
 <!-- ![ChronoPick Banner](https://via.placeholder.com/800x200?text=Modern+React+Date+Time+Picker) Replace with actual banner image -->
 
 
-![npm Version](https://img.shields.io/npm/v/@bikiran/chronopick.svg?style=flat-square)
-![GitHub License](https://img.shields.io/github/license/bikirandev/chronopick.svg?style=flat-square)
+[![npm Version](https://img.shields.io/npm/v/@bikiran/chronopick.svg?style=flat-square)](https://www.npmjs.com/package/@bikiran/chronopick)
+[![npm Downloads](https://img.shields.io/npm/dt/@bikiran/chronopick.svg?style=flat-square)](https://www.npmjs.com/package/@bikiran/chronopick)
+[![GitHub License](https://img.shields.io/github/license/bikirandev/chronopick.svg?style=flat-square)](https://github.com/bikirandev/chronopick/blob/main/LICENSE)
 [![GitHub Issues](https://img.shields.io/github/issues/bikirandev/chronopick.svg?style=flat-square)](https://github.com/bikirandev/chronopick/issues)
-[![API Docs](https://img.shields.io/badge/docs-API%20Reference-blue.svg)](https://github.com/bikirandev/chronopick/wiki)
+[![GitHub Stars](https://img.shields.io/github/stars/bikirandev/chronopick.svg?style=flat-square)](https://github.com/bikirandev/chronopick/stargazers)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/bikirandev/chronopick.svg?style=flat-square)](https://github.com/bikirandev/chronopick/commits/main)
 
 
 A modern, accessible, and highly customizable React date and time picker component with Tailwind CSS styling. Perfect for building intuitive date selection experiences in your applications.
