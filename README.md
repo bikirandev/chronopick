@@ -3,9 +3,10 @@
 <!-- ![ChronoPick Banner](https://via.placeholder.com/800x200?text=Modern+React+Date+Time+Picker) Replace with actual banner image -->
 
 
-![NuGet Version](https://img.shields.io/nuget/v/Bikiran.Validation.svg?style=flat-square)
-![License](https://img.shields.io/github/license/bikirandev/Bikiran.Validation.svg?style=flat-square)
-[![API Docs](https://img.shields.io/badge/docs-API%20Reference-blue.svg)](https://github.com/bikirandev/Bikiran.Validation/wiki)
+![npm Version](https://img.shields.io/npm/v/@bikiran/chronopick.svg?style=flat-square)
+![GitHub License](https://img.shields.io/github/license/bikirandev/chronopick.svg?style=flat-square)
+[![GitHub Issues](https://img.shields.io/github/issues/bikirandev/chronopick.svg?style=flat-square)](https://github.com/bikirandev/chronopick/issues)
+[![API Docs](https://img.shields.io/badge/docs-API%20Reference-blue.svg)](https://github.com/bikirandev/chronopick/wiki)
 
 
 A modern, accessible, and highly customizable React date and time picker component with Tailwind CSS styling. Perfect for building intuitive date selection experiences in your applications.
@@ -251,6 +252,8 @@ src/
 MIT © [Bikiran](https://github.com/bikirandev)
 
 ---
+
+## Developed by Bikiran
 
 **Need Help?**  
 Open an issue on [GitHub](https://github.com/bikirandev/chronopick/issues)
