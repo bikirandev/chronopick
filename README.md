@@ -253,7 +253,9 @@ MIT © [Bikiran](https://github.com/bikirandev)
 
 ---
 
-## Developed by Bikiran
+## Aurthor
+
+Develop by [Bikiran](https://www.bikiran.com/)
 
 **Need Help?**  
 Open an issue on [GitHub](https://github.com/bikirandev/chronopick/issues)
