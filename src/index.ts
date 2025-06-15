@@ -1,11 +1,14 @@
-export { default as ChronoPick } from "./components/Chronopick/ChronoPick";
+export { default as ChronoPick } from "./components/ChronoPick";
 
 // Export core types for users of the library
 export type {
   ChronoPickProps,
   SelectedDateType,
   DateRange,
+} from "./lib/types/TChronoPick";
+
+export {
   ChronoPickMode,
-  DayState,
   CalendarView,
+  DayState,
 } from "./lib/types/TChronoPick";

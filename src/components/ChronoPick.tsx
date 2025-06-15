@@ -5,19 +5,19 @@ import {
   ChronoPickMode,
   DateRange,
   CalendarView,
-} from "../../lib/types/TChronoPick";
+} from "../lib/types/TChronoPick";
 import {
   DEFAULT_DATE_FORMAT,
   MONTH_NAMES_FULL,
   DEFAULT_TIME_FORMAT,
-} from "../../lib/utils/constants";
-import { generateDateId, formatDate } from "../../lib/utils/dateUtils";
-import { useChronoPickCore } from "../../lib/hooks/useChronoPickCore";
+} from "../lib/utils/constants";
+import { generateDateId, formatDate } from "../lib/utils/dateUtils";
+import { useChronoPickCore } from "../lib/hooks/useChronoPickCore";
 import ChronoPickInput from "./ChronoPickInput";
 import ChronoPickHeader from "./ChronoPickHeader";
-import DayView from "../Chronopick/views/DayView";
-import MonthView from "../Chronopick/views/MonthView";
-import YearView from "../Chronopick/views/YearView";
+import DayView from "./views/DayView";
+import MonthView from "./views/MonthView";
+import YearView from "./views/YearView";
 import TimePicker from "./TimePicker";
 import style from "./styles/global.module.css";
 
