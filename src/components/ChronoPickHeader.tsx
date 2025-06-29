@@ -160,7 +160,9 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
           <button
             ref={prevYearBtnRef}
             type="button"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
               handleYearChange(-1);
               gridContainerRef.current?.focus();
             }}
@@ -174,7 +176,11 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
         <button
           ref={prevMonthBtnRef}
           type="button"
-          onClick={handlePrevNav}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handlePrevNav();
+          }}
           className={`${style.navButton} ${style.navButtonDark}`}
           aria-label={getPrevNavLabel()}
         >
@@ -188,7 +194,9 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
             <button
               ref={monthBtnRef}
               type="button"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setCurrentView(CalendarView.Months);
                 gridContainerRef.current?.focus();
               }}
@@ -202,7 +210,9 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
             <button
               ref={yearBtnRef}
               type="button"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 setCurrentView(CalendarView.Years);
                 gridContainerRef.current?.focus();
               }}
@@ -218,7 +228,9 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
           <button
             ref={yearBtnRef}
             type="button"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
               setCurrentView(CalendarView.Years);
               gridContainerRef.current?.focus();
             }}
@@ -243,7 +255,11 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
         <button
           ref={nextMonthBtnRef}
           type="button"
-          onClick={handleNextNav}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleNextNav();
+          }}
           className={`${style.navButton} ${style.navButtonDark}`}
           aria-label={getNextNavLabel()}
         >
@@ -254,7 +270,9 @@ const ChronoPickHeader: React.FC<ChronoPickHeaderProps> = ({
           <button
             ref={nextYearBtnRef}
             type="button"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
               handleYearChange(1);
               gridContainerRef.current?.focus();
             }}

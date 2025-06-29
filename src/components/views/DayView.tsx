@@ -221,7 +221,11 @@ const DayView: React.FC<DayViewProps> = ({
               type="button"
               id={id}
               key={id}
-              onClick={() => handleDayClick(day)}
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default button behavior
+                e.stopPropagation(); // Stop event from bubbling up
+                handleDayClick(day);
+              }}
               // Update focused date on mouse enter for visual feedback and keyboard context
               onMouseEnter={() => {
                 if (mode === ChronoPickMode.Range && !isDisabled)
