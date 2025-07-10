@@ -484,8 +484,8 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
                 MONTH_NAMES_FULL[core.currentMonthDate.getMonth()]
               } ${core.currentMonthDate.getFullYear()}`
             : core.currentView === CalendarView.Months
-              ? String(core.currentMonthDate.getFullYear())
-              : yearRangeText
+            ? String(core.currentMonthDate.getFullYear())
+            : yearRangeText
         }`}
         onKeyDown={handleGridKeyDown} // Handle arrow key navigation etc. within the grid
         className="outline-none rounded" // Basic styling, focus outline handled by cells
@@ -554,7 +554,7 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
 
   // If not inline, render the input field and the pickerContent within a portal (if it should be rendered)
   return (
-    <div className="relative inline-block w-full sm:w-auto">
+    <div className="relative inline-block !w-full sm:w-auto container-class">
       {" "}
       {/* Wrapper for input to allow relative positioning of picker if not using portal for some reason */}
       <ChronoPickInput
