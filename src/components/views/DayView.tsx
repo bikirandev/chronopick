@@ -190,10 +190,7 @@ const DayView: React.FC<DayViewProps> = ({
   return (
     <>
       {/* Header row for day names (Sun, Mon, etc.) */}
-      <div
-        className="grid grid-cols-7 gap-1 text-center text-xs text-gray-500 dark:text-slate-400 mb-2"
-        aria-hidden="true"
-      >
+      <div className={style.dayHeader} aria-hidden="true">
         {DAY_NAMES_SHORT.map((day) => (
           <div key={day} role="columnheader" aria-label={day}>
             {day.substring(0, 2)}
@@ -201,7 +198,7 @@ const DayView: React.FC<DayViewProps> = ({
         ))}
       </div>
       {/* Grid for the days of the month */}
-      <div className="grid grid-cols-7 gap-1" role="rowgroup">
+      <div className={style.dayGrid} role="rowgroup">
         {/* Render empty cells for the offset of the first day of the month */}
         {Array(firstDayOffset)
           .fill(null)
