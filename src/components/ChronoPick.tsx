@@ -82,8 +82,6 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
   const nextYearBtnRef = useRef<HTMLButtonElement>(null);
   const hourSelectRef = useRef<HTMLSelectElement>(null);
   const minuteSelectRef = useRef<HTMLSelectElement>(null);
-  const lastInteractionWasKeyboard = useRef(false);
-
   /** State: The ID of the currently focused descendant element within the grid (for `aria-activedescendant`). */
   const [activeDescendantId, setActiveDescendantId] = useState<
     string | undefined
@@ -485,8 +483,8 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
                 MONTH_NAMES_FULL[core.currentMonthDate.getMonth()]
               } ${core.currentMonthDate.getFullYear()}`
             : core.currentView === CalendarView.Months
-            ? String(core.currentMonthDate.getFullYear())
-            : yearRangeText
+              ? String(core.currentMonthDate.getFullYear())
+              : yearRangeText
         }`}
         onKeyDown={handleGridKeyDown} // Handle arrow key navigation etc. within the grid
         className="outline-none rounded" // Basic styling, focus outline handled by cells
@@ -548,20 +546,20 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
     </div>
   );
   // keyboard focus management
-  useEffect(() => {
-    const handleKeyDown = () => {
-      lastInteractionWasKeyboard.current = true;
-    };
-    const handleMouseDown = () => {
-      lastInteractionWasKeyboard.current = false;
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("mousedown", handleMouseDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("mousedown", handleMouseDown);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleKeyDown = () => {
+  //     lastInteractionWasKeyboard.current = true;
+  //   };
+  //   const handleMouseDown = () => {
+  //     lastInteractionWasKeyboard.current = false;
+  //   };
+  //   window.addEventListener("keydown", handleKeyDown);
+  //   window.addEventListener("mousedown", handleMouseDown);
+  //   return () => {
+  //     window.removeEventListener("keydown", handleKeyDown);
+  //     window.removeEventListener("mousedown", handleMouseDown);
+  //   };
+  // }, []);
 
   // If inline, render pickerContent directly without portal or input field wrapper
   if (inline) {
@@ -576,15 +574,8 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
       <ChronoPickInput
         inputRef={inputRef}
         value={core.displayValue}
-        onClick={() => {
-          if (!inline && !logicalPickerOpen) openPickerWithAnimation();
-        }}
         onFocus={() => {
-          if (
-            lastInteractionWasKeyboard.current &&
-            !inline &&
-            !logicalPickerOpen
-          ) {
+          if (!inline && !logicalPickerOpen) {
             openPickerWithAnimation();
           }
         }}

@@ -1,5 +1,5 @@
 import React from "react";
-import { useChronoPickCore } from "../lib/hooks/useChronoPickCore";
+import { useChronoPickCore } from "./lib/hooks/useChronoPickCore";
 import styles from "./styles/TimePicker.module.css";
 
 type CoreReturnType = ReturnType<typeof useChronoPickCore>;

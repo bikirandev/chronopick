@@ -14,14 +14,13 @@ interface ChronoPickInputProps {
   isPickerOpen: boolean;
   inline: boolean;
   effectiveDateFormat: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const ChronoPickInput: React.FC<ChronoPickInputProps> = ({
   value,
   inputRef,
   onFocus,
-  onClick,
   onKeyDown,
   placeholder,
   pickerId,
@@ -31,31 +30,6 @@ const ChronoPickInput: React.FC<ChronoPickInputProps> = ({
 }) => {
   if (inline) return null;
 
-  const [focused, setFocused] = useState<boolean>(false);
-  const ref = useRef<HTMLInputElement>(null);
-
-  const handleFocus = () => {
-    onFocus();
-    if (ref.current) {
-      ref.current.focus();
-      setFocused(true);
-    }
-  };
-  const handleBlur = (ev: TInputChangeEvent) => {
-    // if (onBlur) {
-    //   onBlur(ev);
-    // }
-    if (ref.current) {
-      setFocused(false);
-    }
-  };
-
-  useEffect(() => {
-    if (focused && ref.current) {
-      ref.current.focus();
-    }
-  }, [focused]);
-
   const ariaDateFormat = effectiveDateFormat
     .replace("YYYY", "Year")
     .replace("MM", "Month")
@@ -64,17 +38,43 @@ const ChronoPickInput: React.FC<ChronoPickInputProps> = ({
     .replace("mm", "Minute")
     .replace("K", "AM/PM");
 
+  const [focused, setFocused] = useState(false);
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+
+    const handleFocus = () => setFocused(true);
+    const handleBlur = () => setFocused(false);
+
+    input.addEventListener("focus", handleFocus);
+    input.addEventListener("blur", handleBlur);
+
+    return () => {
+      input.removeEventListener("focus", handleFocus);
+      input.removeEventListener("blur", handleBlur);
+    };
+  }, [inputRef]);
+
+  // Remove focus when the dialog (picker) is closed
+  useEffect(() => {
+    if (!isPickerOpen) {
+      setFocused(false);
+    }
+  }, [isPickerOpen]);
+
+  const handleClick = () => setFocused(true);
+
   return (
     <div className={styles.container}>
       <input
-        ref={inputRef || ref}
+        ref={inputRef}
         type="text"
         readOnly
         value={value}
-        onFocus={handleFocus}
+        onFocus={onFocus}
         onKeyDown={onKeyDown}
-        onClick={onClick}
-        onBlur={handleBlur}
+        onClick={handleClick}
         placeholder={placeholder}
         className={cn(styles.input, focused ? styles.inputFocused : "")}
         aria-haspopup="dialog"
