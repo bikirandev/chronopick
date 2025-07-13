@@ -5,11 +5,11 @@
 }
 
 .input {
-  @apply w-full pr-10 pl-4 py-2 border border-[var(--border-color,#d1d5db)] rounded-md cursor-pointer text-sm bg-[var(--bg,white)];
+  @apply w-full pr-10 pl-4 py-2 border rounded-md cursor-pointer text-sm bg-[var(--bg,white)];
 }
 
-.input:focus {
-  @apply outline-none border-blue-500 border-secondary-700;
+.inputFocused {
+  @apply border-secondary-700 caret-current;
 }
 
 .iconWrapper {

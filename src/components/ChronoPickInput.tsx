@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CalendarIcon from "./icons/CalendarIcon";
 import styles from "./styles/ChronoPickInput.module.css";
+import { cn } from "./lib/utils/cn";
+import { TInputChangeEvent } from "./lib/types/GlobalType";
 
 interface ChronoPickInputProps {
   value: string;
@@ -12,12 +14,14 @@ interface ChronoPickInputProps {
   isPickerOpen: boolean;
   inline: boolean;
   effectiveDateFormat: string;
+  onClick: () => void;
 }
 
 const ChronoPickInput: React.FC<ChronoPickInputProps> = ({
   value,
   inputRef,
   onFocus,
+  onClick,
   onKeyDown,
   placeholder,
   pickerId,
@@ -26,6 +30,31 @@ const ChronoPickInput: React.FC<ChronoPickInputProps> = ({
   effectiveDateFormat,
 }) => {
   if (inline) return null;
+
+  const [focused, setFocused] = useState<boolean>(false);
+  const ref = useRef<HTMLInputElement>(null);
+
+  const handleFocus = () => {
+    onFocus();
+    if (ref.current) {
+      ref.current.focus();
+      setFocused(true);
+    }
+  };
+  const handleBlur = (ev: TInputChangeEvent) => {
+    // if (onBlur) {
+    //   onBlur(ev);
+    // }
+    if (ref.current) {
+      setFocused(false);
+    }
+  };
+
+  useEffect(() => {
+    if (focused && ref.current) {
+      ref.current.focus();
+    }
+  }, [focused]);
 
   const ariaDateFormat = effectiveDateFormat
     .replace("YYYY", "Year")
@@ -38,14 +67,16 @@ const ChronoPickInput: React.FC<ChronoPickInputProps> = ({
   return (
     <div className={styles.container}>
       <input
-        ref={inputRef}
+        ref={inputRef || ref}
         type="text"
         readOnly
         value={value}
-        onFocus={onFocus}
+        onFocus={handleFocus}
         onKeyDown={onKeyDown}
+        onClick={onClick}
+        onBlur={handleBlur}
         placeholder={placeholder}
-        className={styles.input}
+        className={cn(styles.input, focused ? styles.inputFocused : "")}
         aria-haspopup="dialog"
         aria-expanded={isPickerOpen}
         aria-controls={isPickerOpen ? pickerId : undefined}
