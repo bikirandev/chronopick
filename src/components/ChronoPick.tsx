@@ -20,6 +20,7 @@ import MonthView from "./views/MonthView";
 import YearView from "./views/YearView";
 import TimePicker from "./TimePicker";
 import style from "./styles/global.module.css";
+import { cn } from "./lib/utils/cn";
 
 /**
  * ChronoPick component - A modern React date and time picker.
@@ -42,6 +43,7 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
     enableTime = false,
     minDate,
     maxDate,
+    className,
     disabledDates,
     value, // value and onChange are passed to useChronoPickCore
   } = props;
@@ -569,7 +571,6 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
   // If not inline, render the input field and the pickerContent within a portal (if it should be rendered)
   return (
     <div className="relative inline-block !w-full sm:w-auto container-class">
-      {" "}
       {/* Wrapper for input to allow relative positioning of picker if not using portal for some reason */}
       <ChronoPickInput
         inputRef={inputRef}
@@ -579,6 +580,7 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
             openPickerWithAnimation();
           }
         }}
+        className={className}
         onKeyDown={handleInputKeyDown}
         placeholder={placeholder}
         pickerId={pickerId}

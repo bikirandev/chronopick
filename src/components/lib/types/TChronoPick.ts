@@ -90,6 +90,7 @@ export interface ChronoPickProps {
    * Defaults to `false`.
    */
   enableTime?: boolean;
+  className?: string;
 }
 
 /**

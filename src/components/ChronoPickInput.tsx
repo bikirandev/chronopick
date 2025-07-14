@@ -14,6 +14,7 @@ interface ChronoPickInputProps {
   isPickerOpen: boolean;
   inline: boolean;
   effectiveDateFormat: string;
+  className?: string;
   onClick?: () => void;
 }
 
@@ -26,6 +27,7 @@ const ChronoPickInput: React.FC<ChronoPickInputProps> = ({
   pickerId,
   isPickerOpen,
   inline,
+  className,
   effectiveDateFormat,
 }) => {
   if (inline) return null;
@@ -40,21 +42,8 @@ const ChronoPickInput: React.FC<ChronoPickInputProps> = ({
 
   const [focused, setFocused] = useState(false);
 
-  useEffect(() => {
-    const input = inputRef.current;
-    if (!input) return;
-
-    const handleFocus = () => setFocused(true);
-    const handleBlur = () => setFocused(false);
-
-    input.addEventListener("focus", handleFocus);
-    input.addEventListener("blur", handleBlur);
-
-    return () => {
-      input.removeEventListener("focus", handleFocus);
-      input.removeEventListener("blur", handleBlur);
-    };
-  }, [inputRef]);
+  // Remove focus/blur event listeners to avoid interfering with parent dropdown's outside click logic.
+  // Instead, rely on React's onFocus/onBlur and picker open state.
 
   // Remove focus when the dialog (picker) is closed
   useEffect(() => {
@@ -76,7 +65,11 @@ const ChronoPickInput: React.FC<ChronoPickInputProps> = ({
         onKeyDown={onKeyDown}
         onClick={handleClick}
         placeholder={placeholder}
-        className={cn(styles.input, focused ? styles.inputFocused : "")}
+        className={cn(
+          styles.input,
+          focused ? styles.inputFocused : "",
+          className
+        )}
         aria-haspopup="dialog"
         aria-expanded={isPickerOpen}
         aria-controls={isPickerOpen ? pickerId : undefined}
