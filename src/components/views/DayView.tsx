@@ -180,10 +180,10 @@ const DayView: React.FC<DayViewProps> = ({
       [style.hoverRange]:
         dayStates.includes(DayState.HoverRange) &&
         !dayStates.includes(DayState.Selected),
-      [style.focused]:
-        focusedDate &&
-        isSameDay(day, focusedDate) &&
-        !dayStates.includes(DayState.Disabled),
+      // [style.focused]:
+      //   focusedDate &&
+      //   isSameDay(day, focusedDate) &&
+      //   !dayStates.includes(DayState.Disabled),
     });
   };
 
