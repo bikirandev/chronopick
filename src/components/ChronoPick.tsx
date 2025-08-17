@@ -431,9 +431,12 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
       aria-modal={!inline} // True if not inline, indicating it traps focus
       aria-labelledby={pickerLabelId} // Associates with the hidden h2 label
       // Apply base animation class and dynamic animation state classes
-      className={`bg-white dark:bg-slate-800 shadow-2xl rounded-lg p-4 w-[21rem] text-slate-800 dark:text-slate-200 chronopick-picker-content-animated pointer-events-auto ${animationClasses} ${
-        inline ? "relative" : ""
-      }`}
+      // className={`bg-white dark:bg-slate-800 shadow-2xl rounded-lg p-4 w-[21rem] text-slate-800 dark:text-slate-200 chronopick-picker-content-animated pointer-events-auto ${animationClasses} ${
+      //   inline ? "relative" : ""
+      // }`}
+      className={cn(style.chronopickPickerContent, animationClasses, {
+        "relative": inline
+      })}
       onClick={(e) => e.stopPropagation()} // Prevent clicks inside picker from closing it (if click outside logic is general)
       onKeyDown={handlePickerContainerKeyDown} // Handle Escape and Tab within picker
     >
@@ -570,7 +573,7 @@ const ChronoPick: React.FC<ChronoPickProps> = (props) => {
 
   // If not inline, render the input field and the pickerContent within a portal (if it should be rendered)
   return (
-    <div className="relative inline-block !w-full sm:w-auto container-class">
+    <div className={cn(style.chronopickWrapper, "container-class")}>
       {/* Wrapper for input to allow relative positioning of picker if not using portal for some reason */}
       <ChronoPickInput
         inputRef={inputRef}
