@@ -976,7 +976,7 @@ export const useChronoPickCore = (params: UseChronoPickCoreParams) => {
           fromDate,
           effectiveDateFormat,
           enableTime
-        )} - ${formatDate(toDate, effectiveDateFormat, enableTime)}`;
+        )} to ${formatDate(toDate, effectiveDateFormat, enableTime)}`;
       }
       if (range.from) {
         // If only 'from' is selected
