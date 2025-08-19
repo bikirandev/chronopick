@@ -984,7 +984,7 @@ export const useChronoPickCore = (params: UseChronoPickCoreParams) => {
           range.from,
           effectiveDateFormat,
           enableTime
-        )} - ...`;
+        )} to ...`;
       }
     }
     return ""; // Default empty string if no value or not a recognized format
