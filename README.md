@@ -289,7 +289,7 @@ MIT License - see the [LICENSE](https://github.com/bikirandev/chronopick/blob/ma
 | 9   | Service      | [Domain](https://www.bikiran.com/domain)                             | Domain registration, transfer & DNS management          |
 | 10  | Service      | [Hosting](https://www.bikiran.com/services/hosting/web)              | Web, app & email hosting on NVMe SSD                    |
 | 11  | Service      | Email & SMS                                                          | Bulk email & SMS notification service                   |
-| 12  | npm          | [Chronopicks](https://www.npmjs.com/package/@bikiran/chronopick)     | Date & time picker React component                      |
+| 12  | npm          | [Chronopick](https://www.npmjs.com/package/@bikiran/chronopick)      | Date & time picker React component                      |
 | 13  | npm          | [Rich Editor](https://www.npmjs.com/package/@bikiran/editor)         | WYSIWYG rich text editor for React                      |
 | 14  | npm          | [Dropdown](https://www.npmjs.com/package/bik-dropdown)               | Project selector dropdown component                     |
 | 15  | npm          | [Button](https://www.npmjs.com/package/@bikiran/button)              | Reusable React button component library                 |
